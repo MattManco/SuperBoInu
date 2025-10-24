@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SuperBoInu Staking</title>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.min.js"></script>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input, button { padding: 10px; margin: 5px; }
+    #leaderboard { margin-top: 20px; }
+</style>
+</head>
+<body>
+<h1>SuperBoInu Staking</h1>
+
+<p>Connect your MetaMask wallet:</p>
+<button id="connectBtn">Connect Wallet</button>
+<p id="walletAddress"></p>
+
+<h2>Stake SBI</h2>
+<input type="text" id="stakeAmount" placeholder="Amount to stake" />
+<button id="stakeBtn">Stake</button>
+
+<h2>Unstake SBI</h2>
+<button id="unstakeBtn">Unstake</button>
+
+<h2>Claim Rewards</h2>
+<button id="claimBtn">Claim (Auto-compounding)</button>
+
+<h2>Leaderboard</h2>
+<button id="leaderboardBtn">Show Top Stakers</button>
+<table id="leaderboard">
+    <thead>
+        <tr><th>Address</th><th>Amount Staked</th></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+// === CONFIGURE THESE ===
+const stakingAddress = "0xYOUR_STAKING_CONTRACT_ADDRESS";
+const stakingABI = [
+    // Minimal ABI für die Funktionen, die wir nutzen
+    "function stake(uint256 amount) external",
+    "function unstake() external",
+    "function claim() external",
+    "function getTopStakers(uint256 topN) view returns (address[] memory, uint256[] memory)",
+    "function calculateReward(address user) view returns (uint256)"
+];
+const tokenDecimals = 18; // SBI decimals
+// ======================
+
+let provider, signer, contract;
+
+async function connectWallet() {
+    if (window.ethereum) {
+        try {
+            // MetaMask Accounts anfordern
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+
+            // Provider und Signer erstellen
+            provider = new ethers.BrowserProvider(window.ethereum);
+            signer = await provider.getSigner();
+            contract = new ethers.Contract(stakingAddress, stakingABI, signer);
+
+            const address = await signer.getAddress();
+            document.getElementById("walletAddress").innerText = "Connected: " + address;
+            alert("Wallet connected: " + address);
+        } catch (err) {
+            console.error(err);
+            alert("Connection failed: " + err.message);
+        }
+    } else {
+        alert("MetaMask not detected. Please install MetaMask!");
+    }
+}
+
+
+async function stake() {
+    const amount = document.getElementById("stakeAmount").value;
+    if (!amount || isNaN(amount) || Number(amount) <= 0) {
+        alert("Enter a valid amount");
+        return;
+    }
+    const parsedAmount = ethers.parseUnits(amount, tokenDecimals);
+    try {
+        const tx = await contract.stake(parsedAmount);
+        await tx.wait();
+        alert("Stake successful!");
+    } catch (err) {
+        console.error(err);
+        alert("Error staking: " + err.message);
+    }
+}
+
+async function unstake() {
+    try {
+        const tx = await contract.unstake();
+        await tx.wait();
+        alert("Unstaked successfully!");
+    } catch (err) {
+        console.error(err);
+        alert("Error unstaking: " + err.message);
+    }
+}
+
+async function claim() {
+    try {
+        const tx = await contract.claim();
+        await tx.wait();
+        alert("Rewards claimed and auto-compounded!");
+    } catch (err) {
+        console.error(err);
+        alert("Error claiming: " + err.message);
+    }
+}
+
+async function showLeaderboard() {
+    try {
+        const topN = 10; // Show top 10
+        const [addresses, amounts] = await contract.getTopStakers(topN);
+
+        const tbody = document.querySelector("#leaderboard tbody");
+        tbody.innerHTML = "";
+
+        for (let i = 0; i < addresses.length; i++) {
+            const row = document.createElement("tr");
+            const addrCell = document.createElement("td");
+            const amtCell = document.createElement("td");
+
+            addrCell.innerText = addresses[i];
+            amtCell.innerText = ethers.formatUnits(amounts[i], tokenDecimals);
+
+            row.appendChild(addrCell);
+            row.appendChild(amtCell);
+            tbody.appendChild(row);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Error fetching leaderboard: " + err.message);
+    }
+}
+
+// === Event Listeners ===
+document.getElementById("connectBtn").addEventListener("click", connectWallet);
+document.getElementById("stakeBtn").addEventListener("click", stake);
+document.getElementById("unstakeBtn").addEventListener("click", unstake);
+document.getElementById("claimBtn").addEventListener("click", claim);
+document.getElementById("leaderboardBtn").addEventListener("click", showLeaderboard);
+</script>
+</body>
+</html>
