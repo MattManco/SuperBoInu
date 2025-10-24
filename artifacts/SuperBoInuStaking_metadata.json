@@ -59,7 +59,52 @@
 			},
 			{
 				"inputs": [],
+				"name": "EARLY_UNSTAKE_PENALTY",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "LOCK_PERIOD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "SECONDS_PER_YEAR",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "calculateReward",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -75,6 +120,30 @@
 				"name": "claim",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "topN",
+						"type": "uint256"
+					}
+				],
+				"name": "getTopStakers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -134,6 +203,25 @@
 				"name": "stake",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "stakers",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -268,11 +356,11 @@
 			]
 		},
 		"SuperBoInuStaking.sol": {
-			"keccak256": "0x734ead7fcc32e799103ad12314946d0dc4ee24bd3994dea9f616bb782cf6a0a7",
+			"keccak256": "0x1af2e0dbbaea08454deb43d11a0cc3e9bf3004440e961e8116482167e4d6f77b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2b7a80834c7c906cca5ca656c0fb557048aa9aceb40d464fa2ccf7ed80acc4ca",
-				"dweb:/ipfs/QmPZkMf7jMThNkeTTwyGkFeFoX6hUvRSbC4z2dXH9zq2mH"
+				"bzz-raw://c16555616ea9096481d1edf3229d0e046e7589cc69efe57a713fb7c916ae064d",
+				"dweb:/ipfs/QmToTnaSnA44bkxjDf6mWZH7F8cEXgLgEjUqw6qsm2tmZ2"
 			]
 		}
 	},

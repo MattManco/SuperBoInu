@@ -1,31 +1,56 @@
-SuperBoInu – Meme-Coin Experiment
-Willkommen beim SuperBoInu-Projekt! Dies ist ein experimentelles Meme-Coin-Projekt, das auf der Ethereum-Blockchain basiert. Es dient als Lernressource und Demonstration für Smart Contracts und Token-Entwicklung.
+SuperBoInu – Meme Coin Experiment
+
+Welcome to the SuperBoInu project!
+This is an experimental meme coin project built on the Ethereum blockchain.
+It serves as a learning resource and demonstration for smart contract and token development.
 
 Features
-ERC-20 Token: Der SuperBoInu-Token basiert auf dem ERC-20 Standard.
-Staking-Funktionalität: Benutzer können ihre Tokens staken, um Belohnungen zu erhalten.
-Solidity Smart Contracts: Alle Verträge sind in Solidity geschrieben und können mit Remix oder Truffle getestet werden.
+
+ERC-20 Token: The SuperBoInu token follows the ERC-20 standard.
+
+Staking Functionality: Users can stake their tokens to earn rewards.
+
+Solidity Smart Contracts: All contracts are written in Solidity and can be tested using Remix or Truffle.
 
 Installation
-Klonen Sie das Repository:
-  git clone https://github.com/MattManco/SuperBoInu.git
-Installieren Sie die erforderlichen Abhängigkeiten:
-  npm install
-Öffnen Sie die .prettierrc.json-Datei, um den Code-Stil anzupassen.
 
-Verwendung
-Deployen Sie die Smart Contracts auf einem Ethereum-Testnetzwerk wie Rinkeby oder Ropsten.
-Nutzen Sie Remix IDE oder Truffle Suite für das Deployment und das Testen der Verträge.
-Interagieren Sie mit dem SuperBoInu-Token und dem Staking-Vertrag über die bereitgestellten Funktionen.
+Clone the repository:
 
-Dateien im Repository
-SuperBoInu.sol: Der ERC-20 Token-Vertrag.
-SuperBoInuStaking.sol: Der Staking-Vertrag für das Token.
-.prettierrc.json: Konfigurationsdatei für den Code-Stil.
-remix.config.json: Konfiguration für die Remix IDE.
+git clone https://github.com/MattManco/SuperBoInu.git
 
-Haftungsausschluss
-Dieses Projekt ist rein experimentell und nicht für den produktiven Einsatz gedacht. Es sollte nicht mit echtem Geld verwendet werden. Alle Inhalte dienen nur zu Lernzwecken.
 
-Lizenz
-Dieses Projekt steht unter der MIT-Lizenz.
+Install dependencies:
+
+npm install
+
+
+Adjust code style (optional):
+Open the .prettierrc.json file to modify formatting preferences.
+
+Usage
+
+Deploy the smart contracts to an Ethereum test network such as Rinkeby or Goerli.
+
+Use Remix IDE or Truffle Suite for deployment and contract testing.
+
+Interact with the SuperBoInu token and staking contract through the available functions.
+
+Repository Structure
+
+SuperBoInu.sol – The ERC-20 token contract.
+
+SuperBoInuStaking.sol – The staking contract for the token.
+
+.prettierrc.json – Code formatting configuration.
+
+remix.config.json – Configuration for Remix IDE.
+
+Disclaimer
+
+This project is purely experimental and not intended for production use.
+Do not use real money with this token.
+All content is provided for educational purposes only.
+
+License
+
+This project is licensed under the MIT License.
